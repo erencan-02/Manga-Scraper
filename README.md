@@ -5,7 +5,7 @@ Manga-Scraper is a webscraping tool for downloading manga panels. Its main goal 
 
 ## How it works
 
-picture
+![image](https://user-images.githubusercontent.com/46029684/204039536-4b248310-1897-4370-9973-344c779920fe.png)
 
 ## Example
 
