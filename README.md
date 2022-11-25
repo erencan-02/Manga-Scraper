@@ -32,27 +32,28 @@ PanelFinder panel_finder;
 
 public Chapter[] scrape;
 ```
+
 ## PanelFinder
 ```java
-public String[] findPanels //(returns URLs of manga panels)
+public String[] findPanels //(returns URLs of manga panels, mostly jpegs)
 ```
 
 ## Chapter
 ```java
-String spelling;
+String spelling; //name of chapter
 String URL;
 Panel[] panels;
 ```
 
 ## Panel
 ```java
-int ID;
-String url;
+int ID; //indicates the order of panels in a chapter
+String url; //image url
 Chapter parent_chapter;
 ```
 
 ## Downloader
 ```java
-public void download
-public void zip
+public void download //Creates directory and downloads images
+public void zip //Creates zip archive
 ```
