@@ -24,26 +24,35 @@ downloader.download(chapters, make_zip=True)
 # Classes
 
 ## Scraper
-String chapter_url_format
-String[] chapters_spelling
-Chapter[] chapters
-PanelFinder panel_finder
+```java
+String chapter_url_format;
+String[] chapters_spelling;
+Chapter[] chapters;
+PanelFinder panel_finder;
 
-method Chapter[] scrape()
-
+public Chapter[] scrape;
+```
 ## PanelFinder
-method String[] findPanels (returns URLs of manga panels)
+```java
+public String[] findPanels //(returns URLs of manga panels)
+```
 
 ## Chapter
-String spelling
-String URL
-Panel[] panels
+```java
+String spelling;
+String URL;
+Panel[] panels;
+```
 
 ## Panel
-int ID
-String url
-Chapter parent_chapter
+```java
+int ID;
+String url;
+Chapter parent_chapter;
+```
 
 ## Downloader
-method void download()
-method void zip()
+```java
+public void download
+public void zip
+```
