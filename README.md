@@ -19,10 +19,10 @@ Note: This tool only works iff the following rules are true:
 url_format = "https://ww4.readdrstone.com/chapter/dr-stone-chapter-{}/"
 chapter_names = [str(i) for i in list(range(1, 10))]
 
-scraper = Scraper(url_format, chapter_names, panel_finder=PanelFinder2())
+scraper = Scraper(url_format, chapter_names)
 chapters = scraper.scrape()
 
-downloader = Downloader("dr stone", info=True)
+downloader = Downloader("Dr Stone", info=True)
 downloader.download(chapters, make_zip=True)
 ```
 
