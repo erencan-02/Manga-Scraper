@@ -21,34 +21,24 @@ class Scraper:
 
             r = requests.get(chapter_url)
             chapter.panels = self.panel_finder.findPanels(r, chapter)
+
+            if len(chapter.panels) == 0:
+                continue
+
             self.chapters.append(chapter)
 
         return self.chapters
 
 
-
 class PanelFinder:
-    def __init__(self):
-        pass
+    def __init__(self, class_selector="mb-3 mx-auto js-page"):
+        self.class_selector = class_selector
 
     def findPanels(self, request, parent_chapter):
         soup = BeautifulSoup(request.content, 'html.parser')
-        images = soup.findAll('div', {'class': 'img_container mb-2'})
-        images = [i.findChildren('img', recursive=True)[0]['src'] for i in images]
-        images = [Panel(i+1, url, parent_chapter) for i, url in enumerate(images) if i != '']
-
-        return images
-
-class PanelFinder2(PanelFinder):
-    def __init__(self):
-        pass
-
-    def findPanels(self, request, parent_chapter):
-        soup = BeautifulSoup(request.content, 'html.parser')
-        images = soup.findAll('img', {'class': 'mb-3 mx-auto js-page'})
+        images = soup.findAll('img', {'class': self.class_selector})
         images = [Panel(i+1, img['src'], parent_chapter) for i, img in enumerate(images)]
         return images
-
 
 
 class Chapter:
@@ -57,12 +47,12 @@ class Chapter:
         self.url = url
         self.panels = panels
 
+
 class Panel:
     def __init__(self, ID:int, url:str, parent_chapter:Chapter):
         self.ID = ID
         self.url = url
         self.parent_chapter = parent_chapter
-
 
 
 class Downloader:
@@ -121,13 +111,3 @@ class Downloader:
 
         if self.info:
             print("zip file ready!")
-
-
-
-
-#scraper = Scraper("https://readberserk.com/chapter/berserk-chapter-{}/", ["001", "002", "003", "004", "005", "006"])
-scraper = Scraper("https://ww4.readdrstone.com/chapter/dr-stone-chapter-{}/", [str(i) for i in list(range(1, 10))], panel_finder=PanelFinder2())
-chapters = scraper.scrape()
-
-d = Downloader("dr stone", info=True)
-d.download(chapters, make_zip=True)

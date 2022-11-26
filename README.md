@@ -2,6 +2,12 @@
 
 Manga-Scraper is a webscraping tool for downloading manga panels. Its main goal is to be as general as possible so that scraping different mangas becomes easier.
 
+Note: This tool only works iff the following rules are true:
+
+1. The chapter URLs have the form: string {chapter name} string
+2. All Manga panels have to be shown on the site.
+3. All panels have to share the same html class name (which is almost always the case)
+
 
 ## How it works
 
